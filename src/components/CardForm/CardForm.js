@@ -9,10 +9,8 @@ export default class CardForm extends React.Component {
     }
     componentWillUnmount(){}
     render() {
-        return (
-            <form className='card-form'>
-                <input name='cardNumber' onChange={this.handleChangeForm}/>
-            </form>
-        );
+        return <form className="card-form" data-test="card-form">
+            <input name="cardNumber" onChange={this.handleChangeForm} />
+          </form>;
     }
 }
