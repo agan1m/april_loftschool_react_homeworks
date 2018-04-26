@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Market.css';
 import Order from '../Order'
-import { createOrder} from '../../actions/marketActions'
+import { createOrder, moveOrderToFarm} from '../../actions/marketActions'
 import { connect } from 'react-redux';
 
 
@@ -46,13 +46,19 @@ export class Market extends Component {
     
   }
 
+  handleMoveToFarm = () => {
+    const {orders, moveOrderToFarm} = this.props
+    moveOrderToFarm(orders[orders.length-1])
+
+  }
+
   render() {
     const {orders} = this.props
 
     return (<div className="market">
       <h2>Новые заказы в магазине</h2>
       <button className='new-orders__create-button' onClick={this.handleCreateOrder}>Создать заказ</button>
-      <button>Отправить заказ на ферму</button>
+      <button onClick={this.handleMoveToFarm} disabled={orders.length === 0}>Отправить заказ на ферму</button>
       <div className='order-list'>
         {orders.map((order) => (<Order {...order} key={order.id}/>))}
       </div>
@@ -66,7 +72,7 @@ const mapStateToProps = (state) => (
     }
   )
 
-const mapDispatchToProps = {createOrder}
+const mapDispatchToProps = { createOrder, moveOrderToFarm}
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Market)

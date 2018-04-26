@@ -8,7 +8,7 @@ const Order = ({ name, price, createdAt }) => (
       <p className='p--order'>Цена: {price}</p>
     </div>
     <div className='order__lower'>
-      <p className='p--order'>Создан: {createdAt}</p>
+      <p className='p--order'>Создан: {createdAt.toString()}</p>
     </div>
   </div>
 );
