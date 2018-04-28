@@ -14,7 +14,10 @@ export const Budget = ({ profit, deliveryExpanse, marketExpanse, farmExpanse}) =
 
 const mapStateToProps = (state) => (
     {
-        ...state.budget
+        deliveryExpanse: state.budget.deliveryExpanse,
+        marketExpanse: state.budget.marketExpanse,
+        profit: state.budget.profit,
+        farmExpanse: state.budget.farmExpanse
     }
 )
 
