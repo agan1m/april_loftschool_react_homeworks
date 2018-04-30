@@ -12,28 +12,31 @@ class Search extends Component {
         this.setState({search: e.target.value})
     }
     handleClick = () => {
-        const { serials } = this.props
         const { searchRequest } = this.props
-        searchRequest(this.state.search)
+        if(this.state.search) {
+            return (searchRequest(this.state.search),
+            this.setState({ search: '' }))
+        }
+        
     }
 
    
 
     render() {
         const { serials } = this.props
-        console.log(serials)
+        
         return (
             <div>
-                <input  onChange={this.handleChange}/>
+                <input value={this.state.search} onChange={this.handleChange}/>
                 <button onClick={this.handleClick}>Найти</button>
                 <div>
-                    {serials.map(ep => {
+                    {serials.map(item => {
                         return <ShowPreview
-                            key={ep.id}
-                            id={ep.id}
-                            name={ep.name}
-                            img={ep.image}
-                            summary={ep.summary} />
+                            key={item.id}
+                            id={item.id}
+                            name={item.name}
+                            img={item.image}
+                            summary={item.summary} />
                     })}
                 </div>
             </div>

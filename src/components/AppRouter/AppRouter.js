@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Search from '../Search';
-import ShowPreview from '../ShowPreview';
 import ShowPage from '../ShowPage';
 import { Switch, Route } from "react-router";
 

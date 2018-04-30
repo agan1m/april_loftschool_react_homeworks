@@ -12,7 +12,7 @@ class ShowPreview extends Component {
                 <Link to={`/show/${id}`}>
                     <h2>{name}</h2>
                 </Link>
-                    <img src={img} alt={name}/>
+                {img == null ? null : <img src={img.medium} alt={name} />}
                     <div dangerouslySetInnerHTML={{__html: summary}} />
                 </div>
         );

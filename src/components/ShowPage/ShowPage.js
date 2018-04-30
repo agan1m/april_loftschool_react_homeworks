@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 class ShowPage extends Component {
     
-    componentWillMount = () => {
+    componentDidMount = () => {
         const { showRequest } = this.props
         const { id } = this.props.match.params;
 
@@ -13,20 +13,22 @@ class ShowPage extends Component {
 
     render() {
         
-        const {serials } = this.props
+        const { serials } = this.props
         const actiors = this.props.serials._embedded
-        console.log(actiors)
+        
+        if(!actiors) return null
         return (
             <div>
                 <h2>{serials.name}</h2>
-                <img src={serials.image} alt={serials.name}/>
+                <img src={serials.image.medium} alt={serials.name}/>
                 <div dangerouslySetInnerHTML={{ __html: serials.summary }}/>
                 <div>
                     {actiors.cast.map(person => {
                         return (
-                            <div>
+                            
+                            <div key={person.person.id}>
                                 <p>{person.person.name}</p>
-                                <img src={person.person.image.medium} alt={person.person.name} />>
+                                <img src={person.person.image.medium} alt={person.person.name} />
                             </div>
                         )
                     })}
